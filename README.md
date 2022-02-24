@@ -1,6 +1,6 @@
-# decard_backend_intern
+# dcard_backend_intern
 
-decard Internship Application Requirements
+dcard Internship Application Requirements
 
 This program contains two api:
 
