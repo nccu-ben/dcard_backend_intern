@@ -5,8 +5,8 @@ const shortid = require('shortid')
 // creating express route handler
 const router = express.Router()
 // import the Url database model
-const Url = require('../models/Url')
-
+const Url = require('./UrlModel')
+const baseUrl = 'http:localhost:5000'
 
 router.post('/shorten', async (req, res) => {
   const {
