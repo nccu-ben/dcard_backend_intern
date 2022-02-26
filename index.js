@@ -11,7 +11,7 @@ app.use(express.json({
     extended: false
 })) //parse incoming request body in JSON format.
 app.use('/', require('./server'))
-app.use('/api/url', require('./server'))
+
 
 //Listen for incoming requests
 const PORT = process.env.PORT || 5000

@@ -12,4 +12,4 @@ const URLSchema = new mongoose.Schema({
 })
 
 // create a model from schema and export it
-module.exports = mongoose.model('Url', URLSchema)
+module.exports = mongoose.model('UrlModel', URLSchema)
