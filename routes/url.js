@@ -1,18 +1,23 @@
 const express = require('express');
-
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 const router = express.Router();
 
 const validUrl = require('valid-url');
 const shortid = require('shortid');
 
-const Url = require('../models/Url');
+const Url = require('../models/UrlModel');
 
 //@route    POST /api/url/shorten
 //@desc     Create short URL
 
-const baseUrl = 'http:localhost:3000';
-router.post('/shorten', async(req,res)=>{
-    const {longUrl} = req.body;
+const baseUrl = 'http:localhost:5000';
+
+router.post('/urls',jsonParser, async(req,res)=>{
+	const {longUrl} = req.body;
+	const {expireAt} = req.body;
+	console.log(longUrl);
+	console.log(expireAt);
     //check base url
     if(!validUrl.isUri(baseUrl)){
         return res.status(401).json('Invalid base URL');
@@ -24,7 +29,7 @@ router.post('/shorten', async(req,res)=>{
         try{
             let url = await Url.findOne({longUrl});
             if(url){
-                res.json(url);
+                res.json({urlCode:url.urlCode,shortUrl:url.shortUrl});
             }
             else{
                 const shortUrl = baseUrl + '/'+ urlCode
@@ -32,7 +37,7 @@ router.post('/shorten', async(req,res)=>{
                     longUrl,
                     shortUrl,
                     urlCode,
-                    date: new Date()
+                    expireAt.
                 });
                 await url.save();
                 res.json(url);

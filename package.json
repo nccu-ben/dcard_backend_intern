@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/nccu-ben/dcard_backend_intern#readme",
   "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
     "mongoose": "^6.2.3",
     "shortid": "^2.2.16",
     "valid-url": "^1.0.9"

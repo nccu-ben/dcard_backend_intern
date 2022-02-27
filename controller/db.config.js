@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 // declare a Database string URI
-const DB_URI = 'mongodb://localhost:27017/urlshortener/test'
+const DB_URI = 'mongodb://127.0.0.1:27017/urlshortener'
 
 // establishing a database connection
 mongoose.connect(DB_URI, {

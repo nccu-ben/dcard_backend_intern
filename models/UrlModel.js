@@ -5,10 +5,11 @@ const URLSchema = new mongoose.Schema({
     urlCode: String,
     longUrl: String,
     shortUrl: String,
-    date: {
+    expireAt: {
         type: String,
-        default: Date.now
+        default: Date.now()
     }
+	
 })
 
 // create a model from schema and export it
