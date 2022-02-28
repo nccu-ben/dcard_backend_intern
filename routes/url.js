@@ -16,8 +16,12 @@ const baseUrl = 'http:localhost:5000';
 router.post('/urls',jsonParser, async(req,res)=>{
 	const {longUrl} = req.body;
 	const {expireAt} = req.body;
-	console.log(longUrl);
-	console.log(expireAt);
+	
+	const expire_time = new Date(expireAt);
+	//check date format
+	if(!expire_time.getYear()){
+		return res.status(401).json('Date format is wrong!');
+	};
     //check base url
     if(!validUrl.isUri(baseUrl)){
         return res.status(401).json('Invalid base URL');
@@ -37,7 +41,7 @@ router.post('/urls',jsonParser, async(req,res)=>{
                     longUrl,
                     shortUrl,
                     urlCode,
-                    expireAt.
+                    expireAt
                 });
                 await url.save();
                 res.json(url);

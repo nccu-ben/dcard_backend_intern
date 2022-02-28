@@ -13,8 +13,17 @@ router.get('/:code', async(req, res)=>{
     try{
         const url = await Url.findOne({urlCode: req.params.code})
         if(url){
-            return res.redirect(url.longUrl);
-        }
+			const expire_time = new Date(url.expireAt);
+			const now_time = new Date();
+			if(expire_time>now_time){
+				//console.log(expire_time);
+				//console.log(now_time);
+				return res.redirect(url.longUrl);
+			}
+			else{
+				return res.status(404).json('URL IS EXPIRE');
+			}
+		}
         else{
             return res.status(404).json('No URL Found');
         }
@@ -25,6 +34,5 @@ router.get('/:code', async(req, res)=>{
         res.status(500).json('Server Error');
     }
 })
-
 
 module.exports = router
